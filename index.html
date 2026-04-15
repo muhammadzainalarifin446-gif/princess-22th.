@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>For My Princess 👑</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #f5e6e8;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* BACKGROUND */
+.bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #1a1a1a;
+    z-index: -3;
+}
+
+/* SLIDER FOTO */
+.slider {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 260px;
+    height: 360px;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: -2;
+    box-shadow: 0 0 25px rgba(0,0,0,0.6);
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* LOGIN */
+.overlay {
+    background: rgba(0,0,0,0.7);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    background: rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background: #ff4d6d;
+    color: white;
+    cursor: pointer;
+}
+
+/* MAIN */
+#main {
+    display: none;
+    padding: 40px;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    color: #ffb3c1;
+}
+
+/* BOX PESAN */
+#pesan {
+    background: rgba(0,0,0,0.6);
+    padding: 25px;
+    border-radius: 15px;
+    max-width: 600px;
+    margin: auto;
+    line-height: 1.7;
+}
+
+/* LOVE */
+.love {
+    position: fixed;
+    top: -10px;
+    color: pink;
+    font-size: 20px;
+    pointer-events: none;
+    animation: fall linear forwards;
+    z-index: 10;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<!-- SLIDER FOTO -->
+<div class="slider">
+    <div class="slide active" style="background-image: url('poto1.jpg')"></div>
+    <div class="slide" style="background-image: url('poto2.jpg')"></div>
+    <div class="slide" style="background-image: url('poto3.jpg')"></div>
+</div>
+
+<!-- LOGIN -->
+<div class="overlay" id="login">
+    <div class="box">
+        <h2>Enter the password 🔐</h2>
+        <input type="text" id="password">
+        <br>
+        <button onclick="cekPassword()">Open</button>
+        <p id="error" style="color:pink;"></p>
+    </div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+    <h1>For My Princess 👑</h1>
+    <p>manusia lucukk yang lahir di 16 April 2004 💖</p>
+    <div id="pesan"></div>
+</div>
+
+<audio id="music" src="lagu1.mp3" loop></audio>
+
+<script>
+function cekPassword() {
+    const input = document.getElementById("password").value;
+
+    if (input === "DUNIA NYA INI") {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("main").style.display = "block";
+
+        document.getElementById("music").play();
+
+        tampilkanPesan();
+        setInterval(createLove, 200);
+    } else {
+        document.getElementById("error").innerText = "SALAHH, coba lagi yaww🙂‍↔️";
+    }
+}
+
+/* SLIDER */
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+setInterval(() => {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+}, 3000);
+
+/* TYPING PANJANG */
+function tampilkanPesan() {
+    const paragraphs = [
+
+`Barakallahu fi umrik ma princess 🤍✨  
+Hari ini bukan cuma tentang bertambahnya umur kamuuu, tapi tentang betapa bersyukurnyaa dunia karena kamuuu lahir di tanggal 16 April 2004, tepatnya di hari Jum'at hari baik, hari dimana seseorang yang manis, lembut, gemesinn dan selalu ngangenin ini mulai ada di duniaa🫶🏼`,
+
+`aku nggaaa pintar dalam merangkai kata, kadang juga bingung harus mulai dari mana. Tapi setiap kali nyebut kamuuu, rasanya kata kata jadi terlalu sederhana untuk mewakili semuanya.`,
+
+`Karena kamuuu itu bukan cuma spesiall bagi dirikuu, kamuuu itu rumah, tempat aku bisa pulang, bercerita ,nangis, ketawaa, bahkan jadi bocil tanpa harus bohong pada duniaa, Yang bikin hati tenang, bahkan dari hal hal kecil.`,
+
+`I may be quiet sometimes, but my heart is loud for you. You make everything feel warmer, softer, and more meaningful. 🤍`,
+
+`Aku sukaa semua tentang kamuuu
+cara kamuuu cerita, cara kamuuu ngambek lucuukk, cara kamuuu peduli tanpa harus banyak kataa.`,
+
+`Hal kecil dari kamuuu selalu berhasil bikin hati ini senyum sendiri. Dan kamuuu nggaaa perlu jadi siapa siapa di dunia inii, karena kamuuu yang sekarang ajaa sudah lebih dari cukup bagikuu.
+semua hal lebih dan kurang dari mu aku syukuri i`,
+
+`Semogaa kamuuu selalu dijaga di setiap langkahmu, dilapangkan hatimu saat dunia terasa berat, dan diberikan kebahagiaan yang bukan cuma datang,tapi juga menetap.`,
+
+`Aku juga berdoaa…
+ semogaa masa depan kamuuu dipenuhi orang orang baik, langkah yang selalu diridhoi Allah, dan mimpi mimpi yang satu per satu jadi nyataaa.
+Allahummaa Aamiin`,
+
+`Stay soft, my princess🌷 
+micuuuuu 🫂🫂💗💗`,
+
+`Aku cuma mau kamuuu tau, bahwa dunia jadi lebih indah sejak kamuuu ada.`,
+
+`Happy Birthdayy Babyy🥳💖💐✨✨  
+
+LOVE UU MORE MOREEEE KAKAKK CANTIKKKK 💗💐✨🥰`
+
+    ];
+
+    let p = 0;
+    let i = 0;
+    const pesan = document.getElementById("pesan");
+
+    function ketik() {
+        if (p >= paragraphs.length) return;
+
+        let text = paragraphs[p];
+
+        if (i < text.length) {
+            let char = text.charAt(i);
+
+            if (char === "\n") {
+                pesan.innerHTML += "<br>";
+            } else {
+                pesan.innerHTML += char;
+            }
+
+            i++;
+            setTimeout(ketik, 30);
+        } else {
+            pesan.innerHTML += "<br><br>";
+            p++;
+            i = 0;
+            setTimeout(ketik, 900);
+        }
+    }
+
+    ketik();
+}
+
+/* LOVE */
+function createLove() {
+    const love = document.createElement("div");
+    love.classList.add("love");
+    love.innerText = "💗";
+
+    love.style.left = Math.random() * 100 + "vw";
+    love.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+    document.body.appendChild(love);
+
+    setTimeout(() => {
+        love.remove();
+    }, 4000);
+}
+</script>
+
+</body>
+</html>
